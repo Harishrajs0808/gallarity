@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpg'%}">
+    <script src="{% static 'scripts.js' %}" defer></script>
+    <title>Settings</title>
+    <style>
+        body {
+        background-color: #121212;
+        color: #ffffff;
+        transition: background 0.3s, color 0.3s;
+        }
+
+        /* Light Mode Styles */
+        body.light-mode {
+        background-color: #f8f9fa;
+        color: #000000;
+        }
+
+        /* Toggle Switch */
+        .theme-toggle {
+        color:black;
+        margin-left: 50px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 10px;
+        background:#00ff00;
+        width: fit-content;
+        }
+
+        .theme-toggle input {
+        display: none;
+        }
+
+        .theme-toggle span {
+        margin-left: 8px;
+        font-size: 16px;
+        }
+
+        .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #000000;
+        }
+
+        .navbar {
+        background-color: black;
+        color: #fff;
+        transition: background 0.3s, color 0.3s;
+        }
+
+        .content {
+            background-color: #121212;
+            color: #fff;
+        }
+
+        /* Light Mode Styles */
+        .light-mode .navbar {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .light-mode .content {
+            background-color: #fff;
+            color: #000;
+        }
+
+        footer {
+        background-color: black;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        }
+
+        footer p {
+        margin: 0;
+        }
+
+        footer ul {
+        list-style: none;
+        padding: 0;
+        }
+
+        footer ul li {
+        display: inline;
+        margin: 0 10px;
+        }
+
+        footer ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        }
+
+        .light-mode footer{
+        background-color: white;
+        } 
+
+        .light-mode footer ul li a,
+        .light-mode p {
+        color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+          <h1>Settings</h1>
+          <nav>
+            <ul>
+              <a href="{% url 'index' %}" class="sign-in-btn">home</a>
+            </ul>
+          </nav>
+        </div>
+    </header>
+    <h2 style="margin: 10px;">Theme</h2>
+    <label class="theme-toggle">
+        <input type="checkbox" id="theme-switch">
+        <span style="font-weight: 800;">Light/Dark Mode</span>
+    </label>
+    <h2 style="margin: 10px;">Add New Account</h2>
+    <br>
+    <label>
+        <a style="margin-left: 50px;" href="{% url 'signin' %}" class="sign-in-btn">new LogIn</a>
+    </label>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <script>
+        // Get the toggle switch element
+        const themeSwitch = document.getElementById("theme-switch");
+
+        // Load user preference from localStorage
+        if (localStorage.getItem("theme") === "light") {
+            document.body.classList.add("light-mode");
+            themeSwitch.checked = true;
+        }
+
+        // Event listener to switch theme
+        themeSwitch.addEventListener("change", function () {
+            if (this.checked) {
+                document.body.classList.add("light-mode");
+                localStorage.setItem("theme", "light"); // Save preference
+            } else {
+                document.body.classList.remove("light-mode");
+                localStorage.setItem("theme", "dark"); // Save preference
+            }
+        });
+    </script>
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 GALLARITY. All Rights Reserved.</p>
+            <ul>
+                <li><a href="/terms/">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpg'%}">
+    <script src="{% static 'scripts.js' %}"></script>
+    <title>Upload</title>
+    <style>
+      body {
+      background-color: #121212;
+      color: #ffffff;
+      transition: background 0.3s, color 0.3s;
+      }
+
+      /* Light Mode Styles */
+      body.light-mode {
+      background-color: #f8f9fa;
+      color: #000000;
+      }
+
+      /* Toggle Switch */
+      .theme-toggle {
+      color:black;
+      margin-left: 50px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 10px;
+      background:#00ff00;
+      width: fit-content;
+      }
+
+      .theme-toggle input {
+      display: none;
+      }
+
+      .theme-toggle span {
+      margin-left: 8px;
+      font-size: 16px;
+      }
+
+      .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #000000;
+      }
+
+      .navbar {
+      background-color: #222;
+      color: #fff;
+      transition: background 0.3s, color 0.3s;
+      }
+
+      .content {
+          background-color: #121212;
+          color: #fff;
+      }
+
+      /* Light Mode Styles */
+      .light-mode .navbar {
+          background-color: #fff;
+          color: #000;
+      }
+
+      .light-mode .content {
+          background-color: #fff;
+          color: #000;
+      }
+      /* Light Mode */
+      .light-mode .form-wrapper {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .light-mode .form-control input {
+        background: #ddd;
+        color: #000;
+      }
+
+      .light-mode .form-control input:is(:focus, :valid) {
+        background: #ccc;
+      }
+
+      .light-mode .form-control label,
+      .light-mode .form-wrapper :where(label, p, small, a) {
+        color: #333;
+      }
+
+      .light-mode .form-wrapper button {
+        background: #007700;
+        color: white;
+      }
+
+      .light-mode .form-wrapper button:hover {
+        background: #004400;
+      }
+  </style>
+</head>
+<body>
+  <header>
+      <div class="navbar">
+        <h1>Upload Page</h1>
+        <nav>
+          <ul>
+            <a href="{% url 'index' %}" class="sign-in-btn">home</a>
+          </ul>
+        </nav>
+      </div>
+  </header>
+  <div class="form-wrapper">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'upload'%}">
+      {% csrf_token %}
+      <div class="form-control">
+        <input type="text" name="username" id="username" required>
+        <label for="username">Username</label>
+      </div>
+      <br>
+      <div>
+        <label for="profile_dp">Profile Picture</label>
+        <input class="file-input" type="file" id="profile_dp" name="profile_dp" accept="image/*" required>
+      </div>
+      <div>
+        <label for="file-input">Upload Image</label>
+        <input class="file-input" type="file" id="file_upload" name="file_upload" accept="image/*" required>
+      </div>
+        <button type="submit">Upload</button>
+    <p>You upload image is display in our webpage. Thank You </p>
+    </form>
+  </div>
+  <script>
+    // Apply saved theme on all pages
+    if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light-mode");
+    }
+  </script>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <footer>
+    <div>
+        <p>&copy; 2025 GALLARITY. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | GALLARITY</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpg'%}">
+    <script src="{% static 'scripts.js' %}" defer></script>
+    
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            margin: 10px;
+            background-color: black;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* About Section Styles */
+        .about {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 50px 0;
+        }
+
+        .about h1 {
+            font-size: 36px;
+            text-align: center;
+            color: white;
+        }
+
+        .about p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: white;
+            text-align: center;
+        }
+
+        .about ul {
+            list-style: none;
+            margin-top: 20px;
+            padding: 0;
+            text-align: center;
+        }
+
+        .about ul li {
+            font-size: 18px;
+            color: white;
+            margin: 10px 0;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .light-mode body {
+            background-color: #f8f9fa;
+            color: black;
+        }
+
+        .light-mode h1,
+        .light-mode p {
+            color: black;
+        }
+
+        .light-mode .navbar,
+        .light-mode footer{
+            background-color: white;
+        } 
+        .light-mode .about {
+            background-color: #f8f9fa;
+            color: black;
+        }
+
+        .light-mode .nav-links a, 
+        .light-mode .about p, 
+        .light-mode .about ul li, 
+        .light-mode footer ul li a {
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+          <h1>About Us</h1>
+          <nav>
+            <ul>
+              <a href="{% url 'index' %}" class="sign-in-btn">home</a>
+            </ul>
+          </nav>
+        </div>
+    </header>
+
+    <!-- About Us Section -->
+    <section class="about">
+        <div class="container">
+            <h1>About GALLARITY</h1>
+            <p>Welcome to GALLARITY, your ultimate destination for stunning wallpapers! We are passionate about bringing you high-quality, beautiful wallpapers that enhance the aesthetic of your digital devices. Our goal is to create a diverse collection of wallpapers that cater to all tastes, whether you love nature, city capes, abstract art, or minimalism.</p>
+            
+            <h1>Our Vision</h1>
+            <p>At GALLARITY, we believe that your screen should reflect your personality and inspire you every day. Our vision is to make sure that everyone can find the perfect wallpaper for their device, whether it's a phone, tablet, or computer.</p>
+
+            <h1>What We Offer</h1>
+            <ul>
+                <li>A large collection of free, high-quality wallpapers.</li>
+                <li>Various categories to browse and discover your perfect wallpaper.</li>
+                <li>The ability to upload and share your own creations with the community.</li>
+                <li>Easy navigation and user-friendly interface.</li>
+            </ul>
+
+            <h1>Join Us</h1>
+            <p>Whether you're looking to personalize your own space or share your favorite wallpapers with the world, GALLARITY is the place for you. Join our growing community and explore endless wallpaper possibilities!</p>
+        </div>
+    </section>
+    <script>
+        // Apply saved theme on all pages
+        if (localStorage.getItem("theme") === "light") {
+            document.body.classList.add("light-mode");
+        }
+    </script>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 GALLARITY. All Rights Reserved.</p>
+            <ul>
+                <li><a href="/terms/">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>

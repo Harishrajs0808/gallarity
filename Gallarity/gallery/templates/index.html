@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<head>
+  <title>Gallarity</title>
+  {% load static %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="icon" href="{% static 'images/logo.jpg'%}">
+  <script src="{% static 'scripts.js' %}" defer></script>
+  <style>
+    /* Dark Mode (default) */
+    body {
+    background-color: #121212;
+    color: #ffffff;
+    transition: background 0.3s, color 0.3s;
+    }
+    .slide ul li a i {
+      text-align: center;
+      margin-left: 15px;
+    }
+    /* Light Mode Styles */
+    body.light-mode {
+    background-color: #f8f9fa;
+    color: #000000;
+    }
+
+    /* Toggle Switch */
+    .theme-toggle {
+    color:black;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    background:#00ff00;
+    width: fit-content;
+    }
+
+    .theme-toggle input {
+    display: none;
+    }
+
+    .theme-toggle span {
+    margin-left: 8px;
+    font-size: 16px;
+    }
+
+    .navbar {
+        background-color: #222;
+        color: #fff;
+    }
+
+    .content {
+        background-color: #121212;
+        color: #fff;
+    }
+
+    /* Light Mode */
+    .light-mode .navbar {
+      background-color: #fff;
+        color: #000;
+    }
+
+    .light-mode .content {
+        background-color: #fff;
+        color: #000;
+    }
+
+    /* Light Mode */
+    .light-mode #search-input {
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #ccc;
+    }
+
+    .light-mode #search-button {
+      background-color: #ddd;
+    }
+
+    .light-mode #search-button:hover {
+      background-color: #bbb;
+    }
+
+    /* Light Mode */
+    .light-mode .slide {
+    background-color: #f8f8f8;
+    }
+
+    .light-mode .slide h1 {
+    background-color: #fff;
+    color: black;
+    }
+
+    .light-mode .slide ul li {
+    background-color: #f8f8f8;
+    }
+
+    .light-mode .slide ul li a{
+    background-color: #f8f8f8;
+    color: black;
+    }
+
+    /* Light Mode */
+    .light-mode .wallpaper {
+      background: #ffffff;
+      color: black;
+    }
+
+    .light-mode .uploader-info {
+      background-color: rgba(255, 255, 255, 0.6);
+      color: #000000;
+    }
+
+    .light-mode #upload-wallpaper {
+      background-color: #f9f9f9;
+      box-shadow: 0px 0px 10px rgba(0, 100, 0, 0.5);
+    }
+
+    .light-mode #upload-wallpaper input, 
+    .light-mode #upload-wallpaper textarea {
+      background-color: #ddd;
+      color: black;
+    }
+
+    footer {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    footer ul li {
+     display: inline;
+     margin: 0 10px;
+    }
+
+    footer ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .light-mode footer{
+      background-color: white;
+    } 
+
+    .light-mode footer ul li a,
+    .light-mode p {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <!-- Hamburger Button -->
+      <label>
+        <input type="checkbox">
+        <div class="toggle">
+          <span class="top_line common"></span>
+          <span class="middle_line common"></span>
+          <span class="bottom_line common"></span>
+        </div>
+        <div class="slide">
+          <h1>MENU</h1>
+          <ul>
+            <li>
+              <a href="/">
+                <i class="fas fa-home"> H o m e </i>
+              </a>
+              <br>
+              <a href="/upload">
+                <i class="fas fa-upload"> U p l o a d </i>
+              </a>
+              <br>
+              <a href="{% url 'signin' %}">
+                <i class="fas fa-sign-in-alt "> L o g - i n </i>
+              </a>
+              <br>
+              <a href="{% url 'setting' %}">
+                <i class="fas fa-cog"> S e t t i n g s </i>
+              </a>
+              <br>
+              <a href="{% url 'about' %}">
+                <i class="fas fa-info-circle"> a b o u t - u s </i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </label>
+      <h1>GALLARITY</h1>
+      <nav>
+        <ul>
+          <a href="/upload" class="sign-in-btn">
+            <img src="{% static 'images/upload-icon.png' %}" alt="Upload icon" width="15px">
+          </a>
+          <a href="{% url 'signin' %}" class="sign-in-btn">LogIn</a>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="wallpapers">
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search wallpapers..." />
+      <button id="search-button">
+          <img src="{% static 'images/search-icon.png' %}" alt="Search" />
+      </button>
+    </div>
+    <h2>Wallpapers</h2>
+    <div class="wallpaper-gallery">
+      <div class="wallpaper" data-name="duck wallpaper" data-description="A beautiful wallpaper of ducks" >
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/duck.jpg'%}" alt="duck wallpaper">
+        <p>Duck Wallpaper</p>
+        <a href="{% static 'images/duck.jpg'%}" download="{% static 'images/duck.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="anonymous wallpaper" data-description="A beautiful wallpaper of anonymous painting">
+        <div class="uploader-info">
+            <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/anonymous.jpg'%}" alt="anonymous wallpaper">
+        <p>Anonymous Wallpaper</p>
+        <a href="{% static 'images/anonymous.jpg'%}" download="{% static 'images/anonymous.jpg'%}" class="download-btn">Download</a>
+      </div>
+  
+      <div class="wallpaper" data-name="rabbit bunny wallpaper" data-description="A beautiful wallpaper of rabbit">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/rabbit.jpg'%}" alt="rabbit bunny wallpaper">
+        <p>Rabbit Bunny Wallpaper</p>
+        <a href="{% static 'images/rabbit.jpg'%}" download="{% static 'images/rabbit.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="armor wallpaper" data-description="A beautiful wallpaper of armor">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/armor.jpg'%}" alt="armor wallpaper">
+        <p>Armor Wallpaper</p>
+        <a href="{% static 'images/armor.jpg'%}" download="{% static 'images/armor.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="aliens wallpaper" data-description="Aliens, or extraterrestrial beings, are hypothetical life forms that exist outside of Earth" >
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/aliens.jpg'%}" alt="aliens wallpaper">
+        <p>Aliens Wallpaper</p>
+        <a href="{% static 'images/aliens.jpg'%}" download="{% static 'images/aliens.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="fruits wallpaper" data-description="Fruits and vegetables are sweet and vibrant gifts, bursting with flavor and goodness.">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/fruits & veg.jpg'%}" alt="fruits & veg wallpaper">
+        <p>Fruits Wallpaper</p>
+        <a href="{% static 'images/fruits & veg.jpg'%}" download="{% static 'images/fruits & veg.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="nature wallpaper" data-description="Nature is a broad term that encompasses the natural world around us.">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/nature.jpg'%}" alt="nature wallpaper">
+        <p>Nature Wallpaper</p>
+        <a href="{% static 'images/nature.jpg'%}" download="{% static 'images/nature.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="students wallpaper" data-description="Students are individuals who are formally enrolled in an educational institution, such as a school, college, or university, for the purpose of learning and acquiring knowledge, skills, and competencies.">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/students.jpg'%}" alt="students wallpaper">
+        <p>Students Wallpaper</p>
+        <a href="{% static 'images/students.jpg'%}" download="{% static 'images/students.jpg'%}" class="download-btn">Download</a>
+      </div> 
+      <div class="wallpaper" data-name="Monkeys" data-description="Monkeys are the animals. It's lives in forest.">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/monkeys.jpg'%}" alt="Monkeys wallpaper">
+        <p>Monkeys Wallpaper</p>
+        <a href="{% static 'images/monkeys.jpg'%}" download="{% static 'images/monkeys.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="Street Lamp" data-description="Street Lamp is light set in street with lamp post.">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/street lamp.jpg'%}" alt="street lamp wallpaper">
+        <p>Street Lamp Wallpaper</p>
+        <a href="{% static 'images/street lamp.jpg'%}" download="{% static 'images/street lamp.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="sky & cloud wallpaper" data-description="The blue sky & clouds are a vast expanse of azure, stretching endlessly above." >
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/sky & cloud.jpg'%}" alt="sky & cloud wallpaper">
+        <p>Sky & Cloud Wallpaper</p>
+        <a href="{% static 'images/sky & cloud.jpg'%}" download="{% static 'sky & cloud/duck.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="space & sun wallpaper" data-description="Space is the boundless. The Sun is the star at the center of our solar system.">
+        <div class="uploader-info">
+            <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/space & sun.jpg'%}" alt="space & sun wallpaper">
+        <p>Space & Sun Wallpaper</p>
+        <a href="{% static 'images/space & sun.jpg'%}" download="{% static 'images/space & sun.jpg'%}" class="download-btn">Download</a>
+      </div>
+  
+      <div class="wallpaper" data-name="space wallpaper" data-description="Space is the boundless.">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/space.jpg'%}" alt="space wallpaper">
+        <p>Space Wallpaper</p>
+        <a href="{% static 'images/space.jpg'%}" download="{% static 'images/space.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="tamil nadu village wallpaper" data-description="Tamil Nadu is a state in southern India. A village is a small, rural settlement or community." >
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/tamil nadu village.jpg'%}" alt="tamil nadu village wallpaper">
+        <p>Tamilnadu Village Wallpaper</p>
+        <a href="{% static 'images/tamil nadu village.jpg'%}" download="{% static 'images/tamil nadu village.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="temples wallpaper" data-description="A temple is a building or structure dedicated to religious or spiritual practices">
+        <div class="uploader-info">
+            <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/temple.jpg'%}" alt="temples wallpaper">
+        <p>Temples Wallpaper</p>
+        <a href="{% static 'images/temple.jpg'%}" download="{% static 'images/temple.jpg'%}" class="download-btn">Download</a>
+      </div>
+  
+      <div class="wallpaper" data-name="village wallpaper" data-description="A village is a small, rural settlement or community.">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/village.jpg'%}" alt="village wallpaper">
+        <p>Village Wallpaper</p>
+        <a href="{% static 'images/village.jpg'%}" download="{% static 'images/village.jpg'%}" class="download-btn">Download</a>
+      </div>
+      <div class="wallpaper" data-name="wing of fire book wallpaper" data-description="The Wings of Fire book by Dr. A.P.J. Abdul Kalam.">
+        <div class="uploader-info">
+          <img src="{% static 'images/logo.jpg'%}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">Gallarity</p>
+        </div>
+        <img src="{% static 'images/wing of fire book.jpg'%}" alt="wing of fire book wallpaper">
+        <p>Book Wallpaper</p>
+        <a href="{% static 'images/wing of fire book.jpg'%}" download="{% static 'images/wing of fire book.jpg'%}" class="download-btn">Download</a>
+      </div>
+      {% if uploaded_files %}
+      {% for file in uploaded_files %}
+      <div class="wallpaper" data-name="{{profile_dp_name}}" data-description="{{profile_dp_name}}" >
+        <div class="uploader-info">
+          <img src="{{ file.profile_dp }}" alt="User Logo" class="user-logo">
+          <p class="uploader-name">{{ file.username }}</p>
+        </div>
+        <img src="{{ file.file_upload }}" alt="{{profile_dp_name}}">
+        <p>{{profile_dp_name}}</p>
+        <a href="{{ file.file_upload }}" download="{{ file.file_upload }}" class="download-btn">Download</a>
+      </div>
+      {% endfor %}
+      {% else %}
+      {% endif %}
+    </div>
+  </section>
+  <script>
+    // Apply saved theme on all pages
+    if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light-mode");
+    }
+  </script>
+  <footer>
+    <div class="footer-container">
+        <p>&copy; 2025 GALLARITY. All Rights Reserved.</p>
+        <ul>
+            <li><a href="/terms/">Terms of Service</a></li>
+        </ul>
+    </div>
+</footer>
+</body>
+</html>

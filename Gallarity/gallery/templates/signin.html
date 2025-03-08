@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpg'%}">
+    <script src="{% static 'static\scripts.js' %}"></script>
+    <style>
+      body {
+      background-color: #121212;
+      color: #ffffff;
+      transition: background 0.3s, color 0.3s;
+      }
+
+      /* Light Mode Styles */
+      body.light-mode {
+      background-color: #f8f9fa;
+      color: #000000;
+      }
+
+      /* Toggle Switch */
+      .theme-toggle {
+      color:black;
+      margin-left: 50px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 10px;
+      background:#00ff00;
+      width: fit-content;
+      }
+
+      .theme-toggle input {
+      display: none;
+      }
+
+      .theme-toggle span {
+      margin-left: 8px;
+      font-size: 16px;
+      }
+
+      .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #000000;
+      }
+
+      .navbar {
+      background-color: #222;
+      color: #fff;
+      transition: background 0.3s, color 0.3s;
+      }
+
+      .content {
+          background-color: #121212;
+          color: #fff;
+      }
+
+      /* Light Mode Styles */
+      .light-mode .navbar {
+          background-color: #fff;
+          color: #000;
+      }
+
+      .light-mode .content {
+          background-color: #fff;
+          color: #000;
+      }
+
+      .light-mode .form-wrapper {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .light-mode .form-control input {
+        background: #ddd;
+        color: #000;
+      }
+
+      .light-mode .form-control input:is(:focus, :valid) {
+        background: #ccc;
+      }
+
+      .light-mode .form-control label,
+      .light-mode .form-wrapper :where(label, p, small, a) {
+        color: #333;
+      }
+
+      .light-mode .form-wrapper button {
+        background: #007700;
+        color: white;
+      }
+
+      .light-mode .form-wrapper button:hover {
+        background: #004400;
+      }
+  </style>
+</head>
+<body> 
+  <header>
+    <div class="navbar">
+      <h1>Sign In</h1>
+      <nav>
+        <ul>
+          <a href="{% url 'index' %}" class="sign-in-btn">home</a>
+        </ul>
+      </nav>
+    </div>
+  </header>
+    <div class="form-wrapper">
+      {% csrf_token %}
+      <form method="post" action="#">
+          <div class="form-control">
+              <input type="text" name="email" id="email" required>
+              <label>Email or phone number</label>
+          </div>
+          <div class="form-control">
+              <input type="password" name="password" id="password" required>
+              <label>Password</label>
+          </div>
+          <button type="submit">Sign In</button>
+      </form>
+      <p>New to Gallarity ? <a href="{% url 'signup' %}">Sign up now</a></p>
+      <small>
+          This page is protected by Google reCAPTCHA to ensure you're not a bot. 
+      </small>
+    </div>
+    <script>
+      // Apply saved theme on all pages
+      if (localStorage.getItem("theme") === "light") {
+          document.body.classList.add("light-mode");
+      }
+    </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer>
+      <div>
+          <p>&copy; 2025 GALLARITY. All Rights Reserved.</p>
+      </div>
+    </footer>
+</body>
+</html>

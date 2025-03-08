@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | GALLARITY</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpg' %}">
+    <script src="{% static 'scripts.js' %}" defer></script>
+
+    <style>
+        /* Default Dark Mode */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin-left: 20px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Terms Section */
+        .terms {
+            background-color: #1e1e1e;
+            padding: 50px 0;
+        }
+
+        .terms h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .terms h2{
+            margin-left: 200px;
+            color: white;
+        }
+
+        .terms p, .terms ul {
+            font-size: 18px;
+            line-height: 1.6;
+            color: white;
+            text-align: left;
+            max-width: 800px;
+            margin: 10px auto;
+        }
+
+        .terms ul {
+            list-style-type: disc;
+            padding-left: 40px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Light Mode */
+        .light-mode body,
+        .light-mode .terms {
+            background-color: #f8f9fa;
+            color: black;
+        }
+
+        .light-mode .navbar, .light-mode footer {
+            background-color: white;
+            color: black;
+        }
+
+        .light-mode .terms p, .light-mode .terms ul {
+            color: black;
+        }
+
+        .light-mode h1,
+        .light-mode h2,
+        .light-mode p{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <h1>Terms of Service</h1>
+        <nav>
+            <ul>
+                <a href="{% url 'index' %}" class="sign-in-btn">Home</a>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Terms of Service Section -->
+<section class="terms">
+    <div class="container">
+        <h1>GALLARITY Terms of Service</h1>
+        <p>Welcome to GALLARITY! By using our website, you agree to the following terms and conditions.</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing and using our services, you accept and agree to be bound by the terms outlined here.</p>
+
+        <h2>2. User Conduct</h2>
+        <ul>
+            <li>You may not upload copyrighted or illegal content.</li>
+            <li>Respectful behavior is required; harassment or abusive language is not tolerated.</li>
+            <li>Uploaded images should be appropriate and comply with our content policies.</li>
+        </ul>
+
+        <h2>3. Intellectual Property</h2>
+        <p>All wallpapers and images remain the property of their respective owners. GALLARITY does not claim ownership unless explicitly stated.</p>
+
+        <h2>4. Termination</h2>
+        <p>We reserve the right to suspend or terminate accounts that violate these terms.</p>
+
+        <h2>5. Changes to Terms</h2>
+        <p>We may update these terms at any time. Continued use of the service means you accept the updated terms.</p>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 GALLARITY. All Rights Reserved.</p>
+</footer>
+
+<script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Load saved theme
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        themeToggle.textContent = "☀️";
+    }
+
+    // Toggle Theme
+    themeToggle.addEventListener("click", () => {
+        if (body.classList.contains("light-mode")) {
+            body.classList.remove("light-mode");
+            localStorage.setItem("theme", "dark");
+            themeToggle.textContent = "🌙";
+        } else {
+            body.classList.add("light-mode");
+            localStorage.setItem("theme", "light");
+            themeToggle.textContent = "☀️";
+        }
+    });
+</script>
+
+</body>
+</html>
