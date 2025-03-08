@@ -1,1 +1,1 @@
-# gallarity_wallpaper
+# gallarity
