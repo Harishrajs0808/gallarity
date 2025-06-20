@@ -3,12 +3,12 @@
 Gallarity is a modern and responsive photo gallery web application built using Django (Python). It allows users to upload, view, organize, and manage image collections effortlessly through a clean and intuitive web interface.
 
 #Features
-📤 Upload photos with titles, descriptions, and categories
-📁 Organize photos by albums or tags
-🔍 Search and filter images by name or category
-🖼️ Full-screen image previews with lightbox view
-🔐 User authentication (login, logout, signup)
-⚙️ Admin panel to manage gallery and users
+*📤 Upload photos with titles, descriptions, and categories
+*📁 Organize photos by albums or tags
+*🔍 Search and filter images by name or category
+*🖼️ Full-screen image previews with lightbox view
+*🔐 User authentication (login, logout, signup)
+*⚙️ Admin panel to manage gallery and users
 
 #Installation
 
